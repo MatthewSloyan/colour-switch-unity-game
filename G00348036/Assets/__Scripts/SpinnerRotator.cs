@@ -10,7 +10,7 @@ public class SpinnerRotator : MonoBehaviour {
 
     #endregion
 
-    // Update is called once per frame
+    // Rotate spinner by the determined speed above.
     void Update () {
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 	}

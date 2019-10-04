@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    #region == Private Variables == 
+    [SerializeField]
+    private SpriteRenderer sr;
+
+    #endregion
 
     // When the ball collides with a piece of the spinner this method is triggered.
     private void OnTriggerEnter2D (Collider2D collision)
     {
-        // Output tag of piece it collided with.
-        Debug.Log(collision.tag);
+        // If the current player tag (spriteRender tag) is equal to the spinner piece tag then end the game.
+        // Otherwise allow the player through
+        if (collision.tag != sr.tag)
+        {
+            Debug.Log("End Game!");
+        }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - YellowTag
   - RedTag
   - GreenTag
+  - ChangeColour
   layers:
   - Default
   - TransparentFX

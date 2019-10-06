@@ -51,9 +51,9 @@ public class ColourManager : MonoBehaviour {
         sr.tag = colourOptions[randomColour];
     }
 
-    public void setColour()
+    public void setColour(string colourChangerTag)
     {
-        int index = Array.IndexOf(colourOptions, sr.tag);
+        int index = Array.IndexOf(colourOptions, colourChangerTag);
         
         sr.color = colours[index];
 

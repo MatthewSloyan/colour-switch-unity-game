@@ -574,10 +574,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 677162465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb08839bd5a5b244a02db846e196978, type: 3}
+  m_Script: {fileID: 11500000, guid: bded29834cf651d4c9cee542e72365e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 677162466}
 --- !u!1 &798460954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1637029114515090, guid: 07bf9c77db7f87f46ae4fa292eb89898,
@@ -921,6 +920,31 @@ Prefab:
       propertyPath: sr
       value: 
       objectReference: {fileID: 798460958}
+    - target: {fileID: 50491204219935078, guid: 07bf9c77db7f87f46ae4fa292eb89898,
+        type: 2}
+      propertyPath: m_SleepingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212286282175709552, guid: 07bf9c77db7f87f46ae4fa292eb89898,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212286282175709552, guid: 07bf9c77db7f87f46ae4fa292eb89898,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1909440383
+      objectReference: {fileID: 0}
+    - target: {fileID: 212286282175709552, guid: 07bf9c77db7f87f46ae4fa292eb89898,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50491204219935078, guid: 07bf9c77db7f87f46ae4fa292eb89898,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07bf9c77db7f87f46ae4fa292eb89898, type: 2}
   m_IsPrefabAsset: 0

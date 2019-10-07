@@ -2,17 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
-    
+    public static PauseMenu Instance { get; private set; }
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        } 
+        else
+        {
+            Destroy(gameObject); // Don't ever allow two 
+        }
+    }
+    
     #region == Private Variables == 
-    [SerializeField]
     private static bool isGamePaused = false;
 
     [SerializeField]
     private GameObject pauseMenuUI;
+
+    [SerializeField]
+    private GameObject gameOverMenuUI;
 
     #endregion
 
@@ -52,8 +67,20 @@ public class PauseMenu : MonoBehaviour {
         isGamePaused = true;
     }
 
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+        isGamePaused = false;
+    }
+
     public void GoToHomeMenu()
     {
 
+    }
+
+    public void GameOverDisplay()
+    {
+        gameOverMenuUI.SetActive(true);
     }
 }

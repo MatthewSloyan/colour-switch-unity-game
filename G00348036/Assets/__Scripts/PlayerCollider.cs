@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerCollider : MonoBehaviour {
 
@@ -17,7 +16,8 @@ public class PlayerCollider : MonoBehaviour {
         if (collision.tag != sr.tag)
         {
             Debug.Log("End Game!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            PauseMenu.Instance.GameOverDisplay();
         }
     }
 }

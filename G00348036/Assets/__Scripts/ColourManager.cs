@@ -6,29 +6,30 @@ using UnityEngine;
 public class ColourManager : MonoBehaviour {
 
     #region == Private Variables == 
-    [SerializeField]
-    private Color[] colours; // Array of colours
+    //[SerializeField]
+    //private Color[] colours; // Array of colours
 
-   // Color[] colors = { new Color(0, 1, 0, 1), new Color(1, 0, 0, 1), new Color(1, 1, 1, 1), new Color(0, 0, 1, 1), new Color(1, 1, 0, 1), new Color(0, 0, 0, 1) };
+    [SerializeField]
+    private Color[] colours = { new Color(44, 182, 115, 255), new Color(250, 238, 49, 255), new Color(41, 141, 225, 255), new Color(222, 82, 107, 255) };
 
     [SerializeField]
     private SpriteRenderer sr;
 
     private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
 
+    // Singleton design pattern to get instance of class in PlayerCollider.cs
+    public static ColourManager Instance { get; private set; }
 
-    //create an object of SingleObject
-    private static ColourManager instance = new ColourManager();
-
-    //make the constructor private so that this class cannot be
-    //instantiated
-    private ColourManager() {
-    }
-
-    //Get the only object available
-    public static ColourManager getInstance()
+    private void Awake()
     {
-        return instance;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Don't ever allow two objects
+        }
     }
 
     #endregion

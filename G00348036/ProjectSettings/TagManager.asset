@@ -9,6 +9,7 @@ TagManager:
   - RedTag
   - GreenTag
   - ChangeColour
+  - Star
   layers:
   - Default
   - TransparentFX

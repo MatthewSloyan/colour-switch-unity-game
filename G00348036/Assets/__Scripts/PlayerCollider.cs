@@ -6,6 +6,8 @@ public class PlayerCollider : MonoBehaviour {
     [SerializeField]
     private SpriteRenderer sr;
 
+    private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
+
     #endregion
 
     // When the ball collides with a piece of the spinner this method is triggered.
@@ -18,6 +20,14 @@ public class PlayerCollider : MonoBehaviour {
             Debug.Log("End Game!");
 
             PauseMenu.Instance.GameOverDisplay();
+        }
+
+        if (collision.gameObject.tag == "ChangeColour")
+        {
+            ColourManager.Instance.setColour(collision.tag);
+            Debug.Log("Change Colour! " + collision.tag);
+            Destroy(collision.gameObject);
+            return;
         }
     }
 }

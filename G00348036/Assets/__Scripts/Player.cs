@@ -12,6 +12,9 @@ public class Player : MonoBehaviour {
     private float jumpSpeed = 10.0f;
 
     [SerializeField]
+    private float fallThreshold = -5.0f;
+
+    [SerializeField]
     private Rigidbody2D rb; // Rigid body component
 
     #endregion
@@ -33,6 +36,11 @@ public class Player : MonoBehaviour {
 
             // Set the velocity of the Rigid body to the current velocity times the jump speed.
             rb.velocity = Vector2.up * jumpSpeed;
+        }
+
+        if (transform.position.y < fallThreshold)
+        {
+            PauseMenu.Instance.GameOverDisplay();
         }
     }
 }

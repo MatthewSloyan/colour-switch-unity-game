@@ -11,9 +11,10 @@ public class ItemCollider : MonoBehaviour {
 
         Debug.Log("Item Collider! " + collision.tag);
 
-        if (collision.tag == "ChangeColour")
+        if (collision.gameObject.tag == "ChangeColour")
         {
             //c.setColour(collision.tag);
+            ColourManager.Instance.setColour(collision.tag);
             Debug.Log("Change Colour! " + collision.tag);
             Destroy(collision.gameObject);
             return;

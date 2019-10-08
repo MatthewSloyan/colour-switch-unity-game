@@ -5,20 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
-
-    public static PauseMenu Instance { get; private set; }
-
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-        } 
-        else
-        {
-            Destroy(gameObject); // Don't ever allow two 
-        }
-    }
     
     #region == Private Variables == 
     private static bool isGamePaused = false;
@@ -31,10 +17,25 @@ public class PauseMenu : MonoBehaviour {
 
     #endregion
 
+    // Singleton design pattern to get instance of class in PlayerCollider.cs
+    public static PauseMenu Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Don't ever allow two objects
+        }
+    }
+
     // Update is called once per frame
     void Update () {
 
-        // Get esc key input from keyboard
+        // Get esc key input from keyboard, to pause game from keyboard entry
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isGamePaused)
@@ -47,6 +48,9 @@ public class PauseMenu : MonoBehaviour {
             }
         }
     }
+
+    #region == Menu overlays (Pause/Gameover)
+    // These methods will be refactored out of this class eventually
 
     // Resumes game if called
     public void ResumeGame()
@@ -67,6 +71,16 @@ public class PauseMenu : MonoBehaviour {
         isGamePaused = true;
     }
 
+    // Display game over screen
+    public void GameOverDisplay()
+    {
+        gameOverMenuUI.SetActive(true);
+    }
+    #endregion
+
+    #region == Navigation methods == 
+
+    // Resets game if called 
     public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -74,13 +88,18 @@ public class PauseMenu : MonoBehaviour {
         isGamePaused = false;
     }
 
+    // Navigate the player back to the home menu
     public void GoToHomeMenu()
     {
-
+        SceneManager.LoadScene("HomeMenu", LoadSceneMode.Single);
+        Time.timeScale = 1f;
+        isGamePaused = false;
     }
 
-    public void GameOverDisplay()
+    // Load the intial game
+    public void PlayGame()
     {
-        gameOverMenuUI.SetActive(true);
+        SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
     }
+    #endregion
 }

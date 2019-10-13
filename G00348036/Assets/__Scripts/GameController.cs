@@ -16,6 +16,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Transform prevSpinner;
 
+    // Singleton design pattern to get instance of class in PlayerCollider.cs
+    public static GameController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -23,7 +34,7 @@ public class GameController : MonoBehaviour
         ColourManager.Instance.setPlayerColour();
     }
 
-    private void createGameObjects()
+    public void createGameObjects()
     {
         Vector2 newSpinnerPos = prevSpinner.position;
         newSpinnerPos.y += 5f;

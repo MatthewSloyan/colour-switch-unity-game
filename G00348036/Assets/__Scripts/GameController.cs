@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject spinner;
 

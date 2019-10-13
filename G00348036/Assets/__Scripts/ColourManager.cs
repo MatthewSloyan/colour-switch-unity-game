@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ColourManager : MonoBehaviour {
+public class ColourManager : MonoBehaviour
+{
 
     #region == Private Variables == 
     //[SerializeField]
     //private Color[] colours; // Array of colours
 
-    [SerializeField]
-    private Color[] colours = { new Color(44, 182, 115, 255), new Color(250, 238, 49, 255), new Color(41, 141, 225, 255), new Color(222, 82, 107, 255) };
+    private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
 
     [SerializeField]
     private SpriteRenderer sr;
@@ -26,20 +23,17 @@ public class ColourManager : MonoBehaviour {
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject); // Don't ever allow two objects
-        }
     }
 
     #endregion
-    
+
     // Use this for initialization
-    void Start () {
-        setRandomColour();
+    void Start()
+    {
+       
     }
 
-    public void setRandomColour()
+    public void setPlayerColour()
     {
         // Get a random index between 1 and 4
         int randomColour = UnityEngine.Random.Range(0, colours.Length);
@@ -50,12 +44,18 @@ public class ColourManager : MonoBehaviour {
         // Set the tag of the SpriteRenderer to a colour in the string array.
         // This will be retrieved in the PlayerCollider script.
         sr.tag = colourOptions[randomColour];
+        Debug.Log("Change Colour! " + sr.tag);
+    }
+
+    public void setRandomColour()
+    {
+
     }
 
     public void setColour(string colourChangerTag)
     {
-        int index = Array.IndexOf(colourOptions, colourChangerTag);
-        
+        int index = System.Array.IndexOf(colourOptions, colourChangerTag);
+
         sr.color = colours[index];
 
         sr.tag = colourOptions[index];

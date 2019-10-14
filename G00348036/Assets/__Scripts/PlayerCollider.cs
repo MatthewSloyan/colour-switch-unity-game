@@ -15,8 +15,9 @@ public class PlayerCollider : MonoBehaviour {
 
         if (collision.gameObject.tag == "ChangeColour")
         {
-            ColourManager.Instance.setColour("RedTag");
-            //Debug.Log("Change Colour! " + collision.tag);
+            SpriteRenderer sr = collision.gameObject.GetComponent<SpriteRenderer>();
+            ColourManager.Instance.setColour(sr.color);
+
             Destroy(collision.gameObject);
             return;
         }

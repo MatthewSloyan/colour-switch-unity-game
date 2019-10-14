@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Transform prevSpinner;
 
+    private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
+
     #endregion
 
     // Singleton design pattern to get instance of class in PlayerCollider.cs
@@ -63,8 +65,13 @@ public class GameController : MonoBehaviour
         newcolourSwapperPos.y += 2.5f;
 
         GameObject newColourSwapper = Instantiate(colourSwapper, newcolourSwapperPos, Quaternion.identity);
-        SpriteRenderer rend = newColourSwapper.GetComponent<SpriteRenderer>();
-        rend.color = Color.black;
+        SpriteRenderer sr = newColourSwapper.GetComponent<SpriteRenderer>();
+
+        // Get a random index between 1 and 4
+        int randomColour = Random.Range(0, colours.Length);
+
+        // Set the colour to one of the determined colours in Unity
+        sr.color = colours[randomColour];
         //newColourSwapper.tag = "RedTag";
     }
 }

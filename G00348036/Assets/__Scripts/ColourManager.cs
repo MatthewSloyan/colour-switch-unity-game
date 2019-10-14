@@ -49,12 +49,11 @@ public class ColourManager : MonoBehaviour
 
     }
 
-    public void setColour(string colourChangerTag)
+    public void setColour(Color colour)
     {
-        int index = System.Array.IndexOf(colourOptions, colourChangerTag);
+        sr.color = colour;
 
-        sr.color = colours[index];
-
+        int index = System.Array.IndexOf(colours, colour);
         sr.tag = colourOptions[index];
     }
 }

@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         createGameObjects();
+
+        // Set initial player colour
         ColourManager.Instance.setPlayerColour();
     }
 
@@ -48,7 +50,6 @@ public class GameController : MonoBehaviour
 
         // Instantiate spinner and set the previous position to the new position for the next call.
         GameObject newSpinner = Instantiate(spinner, newSpinnerPos, Quaternion.identity);
-        prevSpinner = newSpinner.transform;
 
         // == STAR SCORE == 
         // Create a position for the new Star Score object using the previous spinner location (center)
@@ -63,13 +64,9 @@ public class GameController : MonoBehaviour
         newcolourSwapperPos.y += 2.5f;
 
         Instantiate(colourSwapper, newcolourSwapperPos, Quaternion.identity);
-        //SpriteRenderer sr = newColourSwapper.GetComponent<SpriteRenderer>();
 
-        //// Get a random index between 1 and 4
-        //int randomColour = Random.Range(0, colours.Length);
-
-        //// Set the colour to one of the determined colours in Unity
-        //sr.color = colours[randomColour];
-        //newColourSwapper.tag = "RedTag";
+        // Finally set the old position of the spinner to the new position for following calls.
+        // So that they spawn correctly in order.
+        prevSpinner = newSpinner.transform;
     }
 }

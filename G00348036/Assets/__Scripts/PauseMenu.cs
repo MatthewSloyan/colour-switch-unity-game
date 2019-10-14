@@ -26,10 +26,6 @@ public class PauseMenu : MonoBehaviour {
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject); // Don't ever allow two objects
-        }
     }
 
     // Update is called once per frame

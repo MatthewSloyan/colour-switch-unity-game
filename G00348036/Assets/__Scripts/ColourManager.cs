@@ -6,10 +6,10 @@ public class ColourManager : MonoBehaviour
 
     private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
 
+    private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
+
     [SerializeField]
     private SpriteRenderer sr;
-
-    private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
 
     #endregion
 
@@ -23,37 +23,27 @@ public class ColourManager : MonoBehaviour
             Instance = this;
         }
     }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
    
     public void setPlayerColour()
     {
         // Get a random index between 1 and 4
         int randomColour = Random.Range(0, colours.Length);
 
-        // Set the colour to one of the determined colours in Unity
-        sr.color = colours[randomColour];
+        // Check if the new random colour is the current player colour, if so call again until it's different (Recursion).
+        // This is used when swapping colours so the player always gets a new random colour.
+        if (colours[randomColour] == sr.color)
+        {
+            setPlayerColour();
+        }
+        else
+        {
+            // Set the colour to one of the determined colours in Unity
+            sr.color = colours[randomColour];
 
-        // Set the tag of the SpriteRenderer to a colour in the string array.
-        // This will be retrieved in the PlayerCollider script.
-        sr.tag = colourOptions[randomColour];
-        Debug.Log("Change Colour! " + sr.tag);
-    }
+            // Set the tag of the SpriteRenderer to a colour in the string array.
+            // This will be retrieved in the PlayerCollider script.
+            sr.tag = colourOptions[randomColour];
+        }
 
-    public void setRandomColour()
-    {
-
-    }
-
-    public void setColour(Color colour)
-    {
-        sr.color = colour;
-
-        int index = System.Array.IndexOf(colours, colour);
-        sr.tag = colourOptions[index];
     }
 }

@@ -13,15 +13,10 @@ public class PlayerCollider : MonoBehaviour {
     // When the ball collides with a piece of the spinner this method is triggered.
     private void OnTriggerEnter2D (Collider2D collision)
     {
-        Debug.Log("Game tag " + collision.gameObject.tag);
-
+        // If a colour swapper, then randomly select a new unique player colour.
         if (collision.gameObject.tag == "ChangeColour")
         {
-            // Get a random index between 1 and 4
-            int randomColour = Random.Range(0, colours.Length);
-
-            SpriteRenderer playerSr = collision.gameObject.GetComponent<SpriteRenderer>();
-            ColourManager.Instance.setColour(colours[randomColour]);
+            ColourManager.Instance.setPlayerColour();
             
             Destroy(collision.gameObject);
             return;
@@ -32,6 +27,7 @@ public class PlayerCollider : MonoBehaviour {
         {
             Destroy(collision.gameObject);
 
+            // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
             GameController.Instance.createGameObjects();
 
             return;
@@ -41,8 +37,7 @@ public class PlayerCollider : MonoBehaviour {
         // Otherwise allow the player through
         if (collision.tag != sr.tag)
         {
-            Debug.Log("End Game!");
-
+            // Display the gameover menu from the Menu script
             PauseMenu.Instance.GameOverDisplay();
             return;
         }

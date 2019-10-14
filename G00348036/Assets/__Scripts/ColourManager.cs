@@ -2,10 +2,7 @@
 
 public class ColourManager : MonoBehaviour
 {
-
     #region == Private Variables == 
-    //[SerializeField]
-    //private Color[] colours; // Array of colours
 
     private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
 
@@ -13,6 +10,8 @@ public class ColourManager : MonoBehaviour
     private SpriteRenderer sr;
 
     private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
+
+    #endregion
 
     // Singleton design pattern to get instance of class in PlayerCollider.cs
     public static ColourManager Instance { get; private set; }
@@ -25,18 +24,16 @@ public class ColourManager : MonoBehaviour
         }
     }
 
-    #endregion
-
     // Use this for initialization
     void Start()
     {
-       
-    }
 
+    }
+   
     public void setPlayerColour()
     {
         // Get a random index between 1 and 4
-        int randomColour = UnityEngine.Random.Range(0, colours.Length);
+        int randomColour = Random.Range(0, colours.Length);
 
         // Set the colour to one of the determined colours in Unity
         sr.color = colours[randomColour];

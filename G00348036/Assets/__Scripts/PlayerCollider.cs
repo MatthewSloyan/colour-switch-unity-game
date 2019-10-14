@@ -22,24 +22,23 @@ public class PlayerCollider : MonoBehaviour {
         }
 
         // If the gameobject is a star then collect and update score.
-        else if (collision.gameObject.tag == "Star")
+        if (collision.gameObject.tag == "Star")
         {
             Destroy(collision.gameObject);
+
+            GameController.Instance.createGameObjects();
+
             return;
         }
 
         // If the current player tag (spriteRender tag) is equal to the spinner piece tag then end the game.
         // Otherwise allow the player through
-        else if (collision.tag != sr.tag)
+        if (collision.tag != sr.tag)
         {
             Debug.Log("End Game!");
 
             PauseMenu.Instance.GameOverDisplay();
             return;
-        }
-        else
-        {
-            GameController.Instance.createGameObjects();
         }
     }
 }

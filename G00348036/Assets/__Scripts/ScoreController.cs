@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    #region == Private Variables ==
+
+    [SerializeField]
+    private Text scoreText;
+
+    private int playerScore = 0;
+
+    #endregion
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 
-    // == fields ==
-    private int playerScore = 0;
-
-    // subscribe to an enemy killed event and add the score for
+    // subscribe to an star collected event and add the score
     private void OnEnable()
     {
         // subscribe
@@ -27,8 +34,24 @@ public class ScoreController : MonoBehaviour {
 
     private void HandleStarCollectedEvent(PlayerCollider pc)
     {
-        // add the enemy score from the enemy that was killed
+        // add to the score
         playerScore += pc.ScoreValue;
         Debug.Log("Score: " + playerScore);
+
+        // Set the onscreen score.
+        scoreText.text = playerScore.ToString();
+
+        // Check if score has been saved before.
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            if (playerScore >= PlayerPrefs.GetInt("Score"))
+            {
+                PlayerPrefs.SetInt("Score", playerScore);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Score", 0);
+        }
     }
 }

@@ -30,7 +30,6 @@ public class PauseMenu : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         // Get esc key input from keyboard, to pause game from keyboard entry
         if (Input.GetKeyDown(KeyCode.Escape))
         {

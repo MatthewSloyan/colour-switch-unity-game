@@ -557,7 +557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
-  m_Text: 3
+  m_Text: 0
 --- !u!222 &413653654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
-  m_Text: 1
+  m_Text: 0
 --- !u!222 &496769517
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1509,6 +1509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1065591892}
   gameOverMenuUI: {fileID: 583779576}
+  currentScoreText: {fileID: 496769516}
+  highScoreText: {fileID: 413653653}
 --- !u!1 &1349264896
 GameObject:
   m_ObjectHideFlags: 0

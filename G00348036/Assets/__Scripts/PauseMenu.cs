@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
     
@@ -14,6 +15,12 @@ public class PauseMenu : MonoBehaviour {
 
     [SerializeField]
     private GameObject gameOverMenuUI;
+    
+    [SerializeField]
+    private Text currentScoreText;
+
+    [SerializeField]
+    private Text highScoreText;
 
     #endregion
 
@@ -70,6 +77,17 @@ public class PauseMenu : MonoBehaviour {
     public void GameOverDisplay()
     {
         gameOverMenuUI.SetActive(true);
+
+        // Check if score has been saved before.
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            currentScoreText.text = ScoreController.Instance.PlayerScore.ToString();
+            highScoreText.text = PlayerPrefs.GetInt("Score").ToString();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Score", 0);
+        }
     }
     #endregion
 

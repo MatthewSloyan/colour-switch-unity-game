@@ -11,8 +11,20 @@ public class ScoreController : MonoBehaviour {
     private Text scoreText;
 
     private int playerScore = 0;
-
+    public int PlayerScore { get { return playerScore; } }
     #endregion
+
+
+    // Singleton design pattern to get instance of class in PlayerCollider.cs
+    public static ScoreController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -40,10 +52,12 @@ public class ScoreController : MonoBehaviour {
 
         // Set the onscreen score.
         scoreText.text = playerScore.ToString();
-
+        
         // Check if score has been saved before.
         if (PlayerPrefs.HasKey("Score"))
         {
+            //Debug.Log("HighScore: " + PlayerPrefs.GetInt("Score"));
+
             if (playerScore >= PlayerPrefs.GetInt("Score"))
             {
                 PlayerPrefs.SetInt("Score", playerScore);
@@ -53,5 +67,7 @@ public class ScoreController : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Score", 0);
         }
+        
+        //PlayerPrefs.DeleteAll();
     }
 }

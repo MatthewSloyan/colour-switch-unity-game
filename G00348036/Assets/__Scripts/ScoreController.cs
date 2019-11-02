@@ -8,15 +8,27 @@ public class ScoreController : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    // When the ball collides with a score star this method is triggered.
-    private void OnTriggerEnter2D(Collider2D collision)
+    // == fields ==
+    private int playerScore = 0;
+
+    // subscribe to an enemy killed event and add the score for
+    private void OnEnable()
     {
-       Destroy(gameObject);
+        // subscribe
+        PlayerCollider.StarCollectedEvent += HandleStarCollectedEvent;
+    }
+
+    private void OnDisable()
+    {
+        // unsubscribe
+        PlayerCollider.StarCollectedEvent -= HandleStarCollectedEvent;
+    }
+
+    private void HandleStarCollectedEvent(PlayerCollider pc)
+    {
+        // add the enemy score from the enemy that was killed
+        playerScore += pc.ScoreValue;
+        Debug.Log("Score: " + playerScore);
     }
 }

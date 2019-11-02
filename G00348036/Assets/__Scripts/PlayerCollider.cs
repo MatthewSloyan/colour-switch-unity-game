@@ -9,6 +9,14 @@ public class PlayerCollider : MonoBehaviour {
     private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
 
     #endregion
+    
+    private int scoreValue = 1; 
+    public int ScoreValue { get { return scoreValue; } }
+
+    // notify the system when a star is collected.
+    public delegate void StarCollected(PlayerCollider pc);
+
+    public static StarCollected StarCollectedEvent;
 
     // Use this for initialization
     void Start()
@@ -35,6 +43,8 @@ public class PlayerCollider : MonoBehaviour {
             // Play collect star sound once.
             AudioController.Instance.playCollectStarClip();
 
+            PublishStarCollectedEvent();
+
             Destroy(collision.gameObject);
 
             // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
@@ -56,6 +66,15 @@ public class PlayerCollider : MonoBehaviour {
             // Display the gameover menu from the Menu script
             PauseMenu.Instance.GameOverDisplay();
             return;
+        }
+    }
+
+    // event for the system
+    private void PublishStarCollectedEvent()
+    {
+        if (StarCollectedEvent != null)
+        {
+            StarCollectedEvent(this);
         }
     }
 }

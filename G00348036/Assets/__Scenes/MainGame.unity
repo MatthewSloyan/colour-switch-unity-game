@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 197561329}
   - component: {fileID: 197561334}
   - component: {fileID: 197561328}
+  - component: {fileID: 197561335}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -276,6 +277,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 197561333}
+--- !u!114 &197561335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 197561327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925ecaa08d00a7e4492226de732d8e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &241649306
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +611,11 @@ Prefab:
         type: 2}
       propertyPath: sr
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 58523808597009864, guid: 222b4afb9000f274e93416d7984af960,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 222b4afb9000f274e93416d7984af960, type: 2}
@@ -961,15 +978,6 @@ Prefab:
     - target: {fileID: 4700695647668662, guid: fd966567160f4124cbeff4ca8751263c, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796178543126712, guid: fd966567160f4124cbeff4ca8751263c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114152465631829584, guid: fd966567160f4124cbeff4ca8751263c,
-        type: 2}
-      propertyPath: sr
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd966567160f4124cbeff4ca8751263c, type: 2}
@@ -2468,6 +2476,26 @@ Prefab:
     - target: {fileID: 1471321350906776, guid: d2cd97ec85d31ed49a148abac2f41c37, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60800200110825882, guid: d2cd97ec85d31ed49a148abac2f41c37,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 60628220054011922, guid: d2cd97ec85d31ed49a148abac2f41c37,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 60690742732161322, guid: d2cd97ec85d31ed49a148abac2f41c37,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 60729247987426660, guid: d2cd97ec85d31ed49a148abac2f41c37,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2cd97ec85d31ed49a148abac2f41c37, type: 2}

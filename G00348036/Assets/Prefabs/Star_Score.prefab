@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4700695647668662}
   - component: {fileID: 212291074193918194}
   - component: {fileID: 58735613589677188}
-  - component: {fileID: 114152465631829584}
+  - component: {fileID: 114947759132394588}
   m_Layer: 0
   m_Name: Star_Score
   m_TagString: Star
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.7
---- !u!114 &114152465631829584
+--- !u!114 &114947759132394588
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

@@ -30,6 +30,9 @@ public class Player : MonoBehaviour {
         // Get space bar, up arrow and left mouse click input
         if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            // Play tap sound once.
+            AudioController.Instance.playTapClip();
+
             // https://answers.unity.com/questions/1301204/how-to-change-rigidbody2d-body-type-or-change-whet.html
             // Sourced and adapted from the link above to change the body type of the player
             gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -40,6 +43,9 @@ public class Player : MonoBehaviour {
 
         if (transform.position.y < fallThreshold)
         {
+            // Play player death sound once.
+            //AudioController.Instance.playPlayerDiesClip();
+            
             PauseMenu.Instance.GameOverDisplay();
         }
     }

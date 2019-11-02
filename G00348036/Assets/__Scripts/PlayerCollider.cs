@@ -10,6 +10,13 @@ public class PlayerCollider : MonoBehaviour {
 
     #endregion
 
+    // Use this for initialization
+    void Start()
+    {
+        GameObject player = GameObject.Find("Player");
+        sr = player.GetComponent<SpriteRenderer>();
+    }
+
     // When the ball collides with a piece of the spinner this method is triggered.
     private void OnTriggerEnter2D (Collider2D collision)
     {
@@ -25,6 +32,9 @@ public class PlayerCollider : MonoBehaviour {
         // If the gameobject is a star then collect and update score.
         if (collision.gameObject.tag == "Star")
         {
+            // Play collect star sound once.
+            AudioController.Instance.playCollectStarClip();
+
             Destroy(collision.gameObject);
 
             // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
@@ -37,6 +47,12 @@ public class PlayerCollider : MonoBehaviour {
         // Otherwise allow the player through
         if (collision.tag != sr.tag)
         {
+            // Play player death sound once.
+            AudioController.Instance.playPlayerDiesClip();
+
+            // Pause game
+            Time.timeScale = 0f;
+
             // Display the gameover menu from the Menu script
             PauseMenu.Instance.GameOverDisplay();
             return;

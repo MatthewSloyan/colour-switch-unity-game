@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     private GameObject spinner;
 
     [SerializeField]
+    private GameObject slider;
+
+    [SerializeField]
     private GameObject colourSwapper;
 
     [SerializeField]
@@ -43,6 +46,15 @@ public class GameController : MonoBehaviour
     // Create all three core game ojects (Spinners, Colour Swappers and Star Scores
     public void createGameObjects()
     {
+        // == SLIDER == 
+        // Create a position for the new Spinner using the previous location
+        Vector2 newSliderPos = prevSpinner.position;
+        newSliderPos.x = 2.81f;
+        newSliderPos.y += 3f;
+
+        // Instantiate spinner and set the previous position to the new position for the next call.
+        GameObject newSlider = Instantiate(slider, newSliderPos, Quaternion.identity);
+
         // == SPINNER == 
         // Create a position for the new Spinner using the previous location
         Vector2 newSpinnerPos = prevSpinner.position;

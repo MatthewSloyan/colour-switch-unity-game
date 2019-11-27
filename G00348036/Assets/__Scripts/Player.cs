@@ -49,4 +49,9 @@ public class Player : MonoBehaviour {
             PauseMenu.Instance.GameOverDisplay();
         }
     }
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+    }
 }

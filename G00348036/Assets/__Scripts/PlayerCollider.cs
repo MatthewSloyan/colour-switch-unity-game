@@ -56,7 +56,8 @@ public class PlayerCollider : MonoBehaviour {
             Destroy(collision.gameObject);
 
             // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
-            GameController.Instance.createGameObjects();
+            // Will need check for level
+            GameController.Instance.createGameObjects(0);
 
             return;
         }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -21,6 +22,9 @@ public class PauseMenu : MonoBehaviour {
 
     [SerializeField]
     private Text highScoreText;
+    
+    [SerializeField]
+    private Toggle soundToggle;
 
     #endregion
 
@@ -33,6 +37,14 @@ public class PauseMenu : MonoBehaviour {
         {
             Instance = this;
         }
+    }
+
+    void Start ()
+    {
+        //Add listener for when the state of the Toggle changes, to take action
+        soundToggle.onValueChanged.AddListener(delegate {
+            ToggleValueChanged(soundToggle);
+        });
     }
 
     // Update is called once per frame
@@ -88,6 +100,14 @@ public class PauseMenu : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Score", 0);
         }
+    }
+
+
+    //Output the new state of the Toggle into Text
+    void ToggleValueChanged(Toggle change)
+    {
+        Debug.Log("New Value : " + soundToggle.isOn);
+        //PlayerPrefs.SetString("Sound", soundToggle.isOn.ToString());
     }
     #endregion
 

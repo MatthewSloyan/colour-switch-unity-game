@@ -37,48 +37,53 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        createGameObjects();
+        createGameObjects(0);
 
         // Set initial player colour
         ColourManager.Instance.setPlayerColour();
     }
 
     // Create all three core game ojects (Spinners, Colour Swappers and Star Scores
-    public void createGameObjects()
+    public void createGameObjects(int levelSwitch)
     {
-        // == SLIDER == 
-        // Create a position for the new Spinner using the previous location
-        Vector2 newSliderPos = prevSpinner.position;
-        newSliderPos.x = 2.81f;
-        newSliderPos.y += 3f;
+        if (levelSwitch == 0)
+        {
+            // == SPINNER == 
+            // Create a position for the new Spinner using the previous location
+            Vector2 newSpinnerPos = prevSpinner.position;
+            newSpinnerPos.y += 5f;
 
-        // Instantiate spinner and set the previous position to the new position for the next call.
-        GameObject newSlider = Instantiate(slider, newSliderPos, Quaternion.identity);
+            // Instantiate spinner and set the previous position to the new position for the next call.
+            GameObject newSpinner = Instantiate(spinner, newSpinnerPos, Quaternion.identity);
 
-        // == SPINNER == 
-        // Create a position for the new Spinner using the previous location
-        Vector2 newSpinnerPos = prevSpinner.position;
-        newSpinnerPos.y += 5f;
+            // == STAR SCORE == 
+            // Create a position for the new Star Score object using the previous spinner location (center)
+            Vector2 newStarPos = prevSpinner.position;
+            newStarPos.y += 5f;
 
-        // Instantiate spinner and set the previous position to the new position for the next call.
-        GameObject newSpinner = Instantiate(spinner, newSpinnerPos, Quaternion.identity);
+            Instantiate(scoreStar, newStarPos, Quaternion.identity);
 
-        // == STAR SCORE == 
-        // Create a position for the new Star Score object using the previous spinner location (center)
-        Vector2 newStarPos = prevSpinner.position;
-        newStarPos.y += 5f;
+            // == COLOUR SWAPPER == 
+            // Create a position for the new Colour Swapper using the new spinner location
+            Vector2 newcolourSwapperPos = newSpinnerPos;
+            newcolourSwapperPos.y += 2.5f;
 
-        Instantiate(scoreStar, newStarPos, Quaternion.identity);
+            Instantiate(colourSwapper, newcolourSwapperPos, Quaternion.identity);
 
-        // == COLOUR SWAPPER == 
-        // Create a position for the new Colour Swapper using the new spinner location
-        Vector2 newcolourSwapperPos = newSpinnerPos;
-        newcolourSwapperPos.y += 2.5f;
+            // Finally set the old position of the spinner to the new position for following calls.
+            // So that they spawn correctly in order.
+            prevSpinner = newSpinner.transform;
+        }
+        else
+        {
+            // == SLIDER == 
+            // Create a position for the new Spinner using the previous location
+            Vector2 newSliderPos = prevSpinner.position;
+            newSliderPos.x = 2.81f;
+            newSliderPos.y += 3f;
 
-        Instantiate(colourSwapper, newcolourSwapperPos, Quaternion.identity);
-
-        // Finally set the old position of the spinner to the new position for following calls.
-        // So that they spawn correctly in order.
-        prevSpinner = newSpinner.transform;
+            // Instantiate spinner and set the previous position to the new position for the next call.
+            GameObject newSlider = Instantiate(slider, newSliderPos, Quaternion.identity);
+        }
     }
 }

@@ -46,7 +46,7 @@ public class PauseMenu : MonoBehaviour {
             ToggleValueChanged(soundToggle);
         });
 
-        // Check if score has been saved before.
+        // Check if sound option has been saved before.
         if (PlayerPrefs.HasKey("Sound"))
         {
             bool toggle = Convert.ToBoolean(PlayerPrefs.GetString("Sound"));
@@ -121,7 +121,6 @@ public class PauseMenu : MonoBehaviour {
     //Output the new state of the Toggle into Text
     void ToggleValueChanged(Toggle change)
     {
-        Debug.Log("New Value : " + soundToggle.isOn);
         PlayerPrefs.SetString("Sound", soundToggle.isOn.ToString());
     }
     #endregion

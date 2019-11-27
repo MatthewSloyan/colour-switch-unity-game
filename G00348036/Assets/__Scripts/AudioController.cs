@@ -22,8 +22,6 @@ public class AudioController : MonoBehaviour {
 
     #endregion
 
-    public static bool Sound { get; private set; }
-
     // Singleton design pattern to get instance of class
     public static AudioController Instance { get; private set; }
 
@@ -41,6 +39,18 @@ public class AudioController : MonoBehaviour {
         // Get AudioSource componant and start background music playing.
         source = GetComponent<AudioSource>();
         playBackgroundMusic();
+    }
+
+    void Update()
+    {
+        if (PlayerPrefs.GetString("Sound") == "True")
+        {
+            source.mute = false;
+        }
+        else
+        {
+            source.mute = true;
+        }
     }
 
     public void playBackgroundMusic()
@@ -62,15 +72,5 @@ public class AudioController : MonoBehaviour {
     public void playTapClip()
     {
         source.PlayOneShot(tapScreen);
-    }
-
-    public void pauseSound()
-    {
-        source.Pause();
-    }
-
-    public void resumeSound()
-    {
-        source.Play();
     }
 }

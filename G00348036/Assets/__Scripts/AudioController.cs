@@ -22,6 +22,8 @@ public class AudioController : MonoBehaviour {
 
     #endregion
 
+    public static bool Sound { get; private set; }
+
     // Singleton design pattern to get instance of class
     public static AudioController Instance { get; private set; }
 
@@ -60,5 +62,15 @@ public class AudioController : MonoBehaviour {
     public void playTapClip()
     {
         source.PlayOneShot(tapScreen);
+    }
+
+    public void pauseSound()
+    {
+        source.Pause();
+    }
+
+    public void resumeSound()
+    {
+        source.Play();
     }
 }

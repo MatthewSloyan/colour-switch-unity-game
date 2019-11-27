@@ -45,6 +45,21 @@ public class PauseMenu : MonoBehaviour {
         soundToggle.onValueChanged.AddListener(delegate {
             ToggleValueChanged(soundToggle);
         });
+
+        // Check if score has been saved before.
+        if (PlayerPrefs.HasKey("Sound"))
+        {
+            bool toggle = Convert.ToBoolean(PlayerPrefs.GetString("Sound"));
+            Debug.Log("Test: " + toggle.ToString());
+            if (!toggle)
+            {
+                soundToggle.isOn = false;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetString("Sound", soundToggle.isOn.ToString());
+        }
     }
 
     // Update is called once per frame
@@ -107,7 +122,7 @@ public class PauseMenu : MonoBehaviour {
     void ToggleValueChanged(Toggle change)
     {
         Debug.Log("New Value : " + soundToggle.isOn);
-        //PlayerPrefs.SetString("Sound", soundToggle.isOn.ToString());
+        PlayerPrefs.SetString("Sound", soundToggle.isOn.ToString());
     }
     #endregion
 

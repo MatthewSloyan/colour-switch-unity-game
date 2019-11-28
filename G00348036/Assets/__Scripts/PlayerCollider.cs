@@ -57,7 +57,7 @@ public class PlayerCollider : MonoBehaviour {
 
             // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
             // Will need check for level
-            GameController.Instance.createGameObjects(0);
+            //GameController.Instance.createGameObjects(0);
 
             return;
         }

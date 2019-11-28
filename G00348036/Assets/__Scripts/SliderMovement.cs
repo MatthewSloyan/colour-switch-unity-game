@@ -22,7 +22,7 @@ public class SliderMovement : MonoBehaviour {
         if (transform.position.x > outOfBounds)
         {
             transform.position = new Vector3(2.8f, transform.position.y, 0);
-            Debug.Log("Test");
+            //Debug.Log("Test");
             //Vector2 newSliderPos = slider.transform.position;
             //newSliderPos.x = -5.6f;
 

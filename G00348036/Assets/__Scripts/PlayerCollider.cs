@@ -40,6 +40,10 @@ public class PlayerCollider : MonoBehaviour {
             ColourManager.Instance.setPlayerColour();
             
             Destroy(collision.gameObject);
+
+            // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
+            // Will need check for level
+            GameController.Instance.createGameObjects();
             return;
         }
 
@@ -54,11 +58,6 @@ public class PlayerCollider : MonoBehaviour {
 
             // Destroy star object
             Destroy(collision.gameObject);
-
-            // Only create a new set of gameobjects when the player gets close so they're not unnecessarily created.
-            // Will need check for level
-            GameController.Instance.createGameObjects(0);
-
             return;
         }
 

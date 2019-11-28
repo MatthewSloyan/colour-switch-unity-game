@@ -17,8 +17,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private GameObject scoreStar;
-
-    [SerializeField]
+    
     private Transform prevPosition;
 
     #endregion
@@ -86,14 +85,13 @@ public class GameController : MonoBehaviour
         prevPosition = newSpinner.transform;
 
         PlayerPrefs.SetInt("LevelSwitch", 1);
-
-        //PlayerPrefs.DeleteKey("LevelSwitch");
     }
 
     // Create all three core game ojects (Spinners, Colour Swappers and Star Scores
     public void createGameObjects()
     {
         int levelSwitch = PlayerPrefs.GetInt("LevelSwitch");
+        Debug.Log("Level Num: " + levelSwitch);
 
         if (levelSwitch == 0)
         {
@@ -103,7 +101,7 @@ public class GameController : MonoBehaviour
             // == SPINNER == 
             // Create a position for the new Spinner using the previous location
             spinnerPos = prevPosition.position;
-            spinnerPos.y += 5f;
+            spinnerPos.y += 3f;
 
             // Instantiate spinner and set the previous position to the new position for the next call.
             newSpinner = Instantiate(spinner, spinnerPos, Quaternion.identity);
@@ -140,19 +138,38 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            Vector2 sliderPos = new Vector2(0, 0);
+
             for (int i = 0; i < 2; i++)
             {
                 // == SLIDER == 
                 // Create a position for the new Spinner using the previous location
-                Vector2 newSliderPos = prevPosition.position;
-                newSliderPos.x = 2.81f;
-                newSliderPos.y += 3f;
+                sliderPos = prevPosition.position;
+                sliderPos.x = 2.81f;
+                sliderPos.y += 4f;
 
                 // Instantiate spinner and set the previous position to the new position for the next call.
-                GameObject newSlider = Instantiate(slider, newSliderPos, Quaternion.identity);
+                GameObject newSlider = Instantiate(slider, sliderPos, Quaternion.identity);
+
+                if (i < 1)
+                {
+                    // == STAR SCORE == 
+                    sliderPos.x = 0;
+                    sliderPos.y += 2;
+                    Instantiate(scoreStar, sliderPos, Quaternion.identity);
+                }
 
                 prevPosition = newSlider.transform;
             }
+
+            // == COLOUR SWAPPER == 
+            // Create a position for the new Colour Swapper using the new spinner location
+            sliderPos.x = 0;
+            sliderPos.y += 2f;
+
+            GameObject newColourSwap = Instantiate(colourSwapper, sliderPos, Quaternion.identity);
+
+            prevPosition = newColourSwap.transform;
 
             PlayerPrefs.SetInt("LevelSwitch", 0);
         }

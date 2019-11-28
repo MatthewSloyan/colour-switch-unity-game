@@ -53,5 +53,6 @@ public class Player : MonoBehaviour {
     void OnApplicationQuit()
     {
         Debug.Log("Application ending after " + Time.time + " seconds");
+        PlayerPrefs.DeleteKey("LevelSwitch");
     }
 }

@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     
     private Transform prevPosition;
 
+    private GameObject parent;
+
     #endregion
 
     // Singleton design pattern to get instance of class in PlayerCollider.cs
@@ -36,6 +38,8 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        parent = GameObject.Find("GameObjectContainer");
+
         //createGameObjects(0);
         createInitial();
 
@@ -53,11 +57,14 @@ public class GameController : MonoBehaviour
         // Create a position for the new Spinner using the previous location
         spinnerPos = new Vector2(0, 1.2f);
 
-        // Instantiate spinner 
+        // Instantiate spinner and set as child to parent
+        // Code adapted from: https://docs.unity3d.com/ScriptReference/Transform.SetParent.html
         newSpinner = Instantiate(spinner, spinnerPos, Quaternion.identity);
-        
+        //newSpinner.transform.parent = parent.transform;
+        newSpinner.transform.SetParent(parent.transform, false);
+
         // == STAR SCORE == 
-        Instantiate(scoreStar, spinnerPos, Quaternion.identity);
+        Instantiate(scoreStar, spinnerPos, Quaternion.identity).transform.SetParent(parent.transform, false);
 
         //// Finally set the old position of the spinner to the new position for following calls.
         //// So that they spawn correctly in order.
@@ -78,7 +85,7 @@ public class GameController : MonoBehaviour
         // Create a position for the new Colour Swapper using the new spinner location
         spinnerPos.y += 2.5f;
 
-        Instantiate(colourSwapper, spinnerPos, Quaternion.identity);
+        Instantiate(colourSwapper, spinnerPos, Quaternion.identity).transform.SetParent(parent.transform, false);
 
         // Finally set the old position of the spinner to the new position for following calls.
         // So that they spawn correctly in order.
@@ -105,9 +112,10 @@ public class GameController : MonoBehaviour
 
             // Instantiate spinner and set the previous position to the new position for the next call.
             newSpinner = Instantiate(spinner, spinnerPos, Quaternion.identity);
+            newSpinner.transform.SetParent(parent.transform, false);
 
             // == STAR SCORE == 
-            Instantiate(scoreStar, spinnerPos, Quaternion.identity);
+            Instantiate(scoreStar, spinnerPos, Quaternion.identity).transform.SetParent(parent.transform, false);
 
             //// Finally set the old position of the spinner to the new position for following calls.
             //// So that they spawn correctly in order.
@@ -128,7 +136,7 @@ public class GameController : MonoBehaviour
             // Create a position for the new Colour Swapper using the new spinner location
             spinnerPos.y += 2.5f;
 
-            Instantiate(colourSwapper, spinnerPos, Quaternion.identity);
+            Instantiate(colourSwapper, spinnerPos, Quaternion.identity).transform.SetParent(parent.transform, false);
 
             // Finally set the old position of the spinner to the new position for following calls.
             // So that they spawn correctly in order.
@@ -150,13 +158,15 @@ public class GameController : MonoBehaviour
 
                 // Instantiate spinner and set the previous position to the new position for the next call.
                 GameObject newSlider = Instantiate(slider, sliderPos, Quaternion.identity);
+                newSlider.transform.SetParent(parent.transform, false);
 
                 if (i < 1)
                 {
                     // == STAR SCORE == 
                     sliderPos.x = 0;
                     sliderPos.y += 2;
-                    Instantiate(scoreStar, sliderPos, Quaternion.identity);
+                    Instantiate(scoreStar, sliderPos, Quaternion.identity).transform.SetParent(parent.transform, false);
+                    //newColourSwap.transform.SetParent(parent.transform, false);
                 }
 
                 prevPosition = newSlider.transform;
@@ -168,6 +178,7 @@ public class GameController : MonoBehaviour
             sliderPos.y += 2f;
 
             GameObject newColourSwap = Instantiate(colourSwapper, sliderPos, Quaternion.identity);
+            newColourSwap.transform.SetParent(parent.transform, false);
 
             prevPosition = newColourSwap.transform;
 

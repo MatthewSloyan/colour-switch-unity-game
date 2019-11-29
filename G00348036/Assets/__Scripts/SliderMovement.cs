@@ -12,6 +12,8 @@ public class SliderMovement : MonoBehaviour {
     private GameObject slider;
 
     private float outOfBounds = 8.45f;
+
+    private float speed = 80f;
     #endregion
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class SliderMovement : MonoBehaviour {
         if (transform.position.x > outOfBounds)
         {
             transform.position = new Vector3(2.8f, transform.position.y, 0);
+            //transform.Translate(2.8f, transform.position.y, speed * Time.deltaTime);
             //Debug.Log("Test");
             //Vector2 newSliderPos = slider.transform.position;
             //newSliderPos.x = -5.6f;

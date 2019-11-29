@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b18fd3713b5be146ada7a0717a53a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
 --- !u!212 &212063923101322074
 SpriteRenderer:
   m_ObjectHideFlags: 1

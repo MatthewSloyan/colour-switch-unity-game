@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpinnerRotator : MonoBehaviour {
    
     #region == Private Variables == 
-    [SerializeField]
-    private float rotationSpeed = 90f;
+
+    private float rotationSpeed = 80f;
 
     #endregion
 

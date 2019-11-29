@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
         
         // Set level switch to 0 to load spinners, and create inital game objects
         PlayerPrefs.SetInt("LevelSwitch", 0);
+        PlayerPrefs.SetInt("LevelNumber", 2);
         createGameObjects();
 
         // Set initial player colour
@@ -172,13 +173,19 @@ public class GameController : MonoBehaviour
         TextMeshPro textMeshComponent;
         Vector2 textPos;
 
+        // Get the current level the player is on
+        int currLevelNum = PlayerPrefs.GetInt("LevelNumber");
+
+        // Set update the levelNumber by 1 for next level.
+        PlayerPrefs.SetInt("LevelNumber", currLevelNum + 1);
+
         // Add new gameobject and TextMeshPro
         levelNumber = new GameObject("LevelNumber");
         levelNumber.AddComponent(typeof(TextMeshPro));
 
         // Get the component from the gameObject to set it's variables, E.g text, size and font style.
         textMeshComponent = levelNumber.GetComponent(typeof(TextMeshPro)) as TextMeshPro;
-        textMeshComponent.text = "Level 1";
+        textMeshComponent.text = "Level " + currLevelNum;
         textMeshComponent.fontSize = 5;
         // Code adapted from: https://docs.unity3d.com/ScriptReference/TextMesh-fontStyle.html
         textMeshComponent.fontStyle = FontStyles.Bold;
@@ -191,5 +198,14 @@ public class GameController : MonoBehaviour
 
         // Instantiate new GameObject and add to parent container.
         Instantiate(levelNumber, textPos, Quaternion.identity).transform.SetParent(parent.transform, false);
+    }
+
+
+    void OnApplicationQuit()
+    {
+        // Clean up
+        //Debug.Log("Application ending after " + Time.time + " seconds");
+        PlayerPrefs.DeleteKey("LevelSwitch");
+        PlayerPrefs.DeleteKey("LevelNumber");
     }
 }

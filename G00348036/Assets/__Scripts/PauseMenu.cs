@@ -134,6 +134,11 @@ public class PauseMenu : MonoBehaviour {
     // Resets game if called 
     public void ResetGame()
     {
+        // Clean up
+        PlayerPrefs.DeleteKey("LevelSwitch");
+        PlayerPrefs.DeleteKey("LevelNumber");
+
+        // Reload current scene.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
         isGamePaused = false;

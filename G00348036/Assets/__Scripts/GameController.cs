@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -56,6 +58,7 @@ public class GameController : MonoBehaviour
     {
         // Get the type of level to load, 0 = spinners, 1 = sliders
         int levelSwitch = PlayerPrefs.GetInt("LevelSwitch");
+        //Debug.Log("Level Switch" + levelSwitch);
 
         if (levelSwitch == 0)
         {
@@ -75,6 +78,7 @@ public class GameController : MonoBehaviour
                     // Set the position for new Spinner using the previous location.
                     // Add three to positon it correctly above last gameObject.
                     spinnerPos = prevPosition.position;
+                    spinnerPos.x = 0;
                     spinnerPos.y += 5f;
                 }
 
@@ -89,7 +93,10 @@ public class GameController : MonoBehaviour
                 // Set prevPosition to the current slider, for next slider or next level.
                 prevPosition = newSpinner.transform;
             }
-            
+
+            // == LEVEL NUMBER ==
+            createLevelNumberText(spinnerPos.y, 0);
+
             // == COLOUR SWAPPER ==
             // Create a position for the new Colour Swapper using the same postion plus 2.75
             spinnerPos.y += 2.75f;
@@ -139,6 +146,9 @@ public class GameController : MonoBehaviour
                 prevPosition = newSlider.transform;
             }
 
+            // == LEVEL NUMBER ==
+            createLevelNumberText(sliderPos.y, 1);
+
             // == COLOUR SWAPPER == 
             // Set back to 0 so star is centered, and move up.
             sliderPos.x = 0;
@@ -153,5 +163,33 @@ public class GameController : MonoBehaviour
             // Set level switch so it will load spinners on next call.
             PlayerPrefs.SetInt("LevelSwitch", 0);
         }
+    }
+
+    // Create a TextMeshPro beside colour swapper to display the current level the player is on.
+    private void createLevelNumberText(float yPos, int levelOption)
+    {
+        GameObject levelNumber;
+        TextMeshPro textMeshComponent;
+        Vector2 textPos;
+
+        // Add new gameobject and TextMeshPro
+        levelNumber = new GameObject("LevelNumber");
+        levelNumber.AddComponent(typeof(TextMeshPro));
+
+        // Get the component from the gameObject to set it's variables, E.g text, size and font style.
+        textMeshComponent = levelNumber.GetComponent(typeof(TextMeshPro)) as TextMeshPro;
+        textMeshComponent.text = "Level 1";
+        textMeshComponent.fontSize = 5;
+        // Code adapted from: https://docs.unity3d.com/ScriptReference/TextMesh-fontStyle.html
+        textMeshComponent.fontStyle = FontStyles.Bold;
+
+        // Set the position to align to the left of the colour swapper.
+        if (levelOption == 0)
+            textPos = new Vector2(7.6f, yPos + 0.55f);
+        else
+            textPos = new Vector2(7.6f, yPos - 0.2f);
+
+        // Instantiate new GameObject and add to parent container.
+        Instantiate(levelNumber, textPos, Quaternion.identity).transform.SetParent(parent.transform, false);
     }
 }

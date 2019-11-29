@@ -108,7 +108,12 @@ public class GameController : MonoBehaviour
             // So that they spawn correctly in order.
             prevPosition = newSpinner.transform;
 
+            // Set level switch so it will load spinners on next call.
             PlayerPrefs.SetInt("LevelSwitch", 1);
+
+            // == DIFFICULTY == 
+            // Increase slider speed for next level to increase difficulty slightly.
+            SliderMovement.MovementSpeed += 0.005f;
         }
         else
         {
@@ -163,6 +168,10 @@ public class GameController : MonoBehaviour
 
             // Set level switch so it will load spinners on next call.
             PlayerPrefs.SetInt("LevelSwitch", 0);
+
+            // == DIFFICULTY == 
+            // Increase spinner speed for next level to increase difficulty slightly.
+            SpinnerRotator.RotationSpeed += 20f;
         }
     }
 
@@ -184,6 +193,7 @@ public class GameController : MonoBehaviour
         levelNumber.AddComponent(typeof(TextMeshPro));
 
         // Get the component from the gameObject to set it's variables, E.g text, size and font style.
+        // Code adapted from: https://forum.unity.com/threads/scripting-the-creation-of-text-meshes.6487/
         textMeshComponent = levelNumber.GetComponent(typeof(TextMeshPro)) as TextMeshPro;
         textMeshComponent.text = "Level " + currLevelNum;
         textMeshComponent.fontSize = 5;

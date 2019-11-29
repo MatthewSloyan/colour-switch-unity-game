@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpinnerRotator : MonoBehaviour {
-   
+
     #region == Private Variables == 
 
-    private float rotationSpeed = 80f;
+    // Movement speed which will be updated slowly to increase difficulty
+    private static float rotationSpeed = 85f;
+    public static float RotationSpeed
+    {
+        set { rotationSpeed = value; }
+    }
 
     #endregion
 

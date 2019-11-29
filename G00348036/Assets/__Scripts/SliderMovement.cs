@@ -5,15 +5,15 @@ using UnityEngine;
 public class SliderMovement : MonoBehaviour {
 
     #region == Private Variables == 
-    [SerializeField]
-    private float movementSpeed;
 
-    [SerializeField]
-    private GameObject slider;
+    // Movement speed which will be updated slowly to increase difficulty
+    private static float movementSpeed = 0.015f;
+    public static float MovementSpeed
+    {
+        set { movementSpeed = value; }
+    }
 
     private float outOfBounds = 8.45f;
-
-    private float speed = 80f;
     #endregion
 
     // Update is called once per frame

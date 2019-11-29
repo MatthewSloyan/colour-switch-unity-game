@@ -12,7 +12,10 @@ public class GameController : MonoBehaviour
     private GameObject spinner;
 
     [SerializeField]
-    private GameObject slider;
+    private GameObject sliderRight;
+
+    [SerializeField]
+    private GameObject sliderLeft;
 
     [SerializeField]
     private GameObject colourSwapper;
@@ -113,7 +116,8 @@ public class GameController : MonoBehaviour
 
             // == DIFFICULTY == 
             // Increase slider speed for next level to increase difficulty slightly.
-            SliderMovement.MovementSpeed += 0.005f;
+            SliderMovementRight.MovementSpeed += 0.007f;
+            SliderMovementLeft.MovementSpeed += 0.007f;
         }
         else
         {
@@ -126,7 +130,11 @@ public class GameController : MonoBehaviour
             {
                 // Get the previous gameObject postion and set x so it starts off screen.
                 sliderPos = prevPosition.position;
-                sliderPos.x = 2.81f;
+
+                if (i == 1)
+                    sliderPos.x = 8.45f;
+                else
+                    sliderPos.x = 2.81f;
 
                 // If first slider, set sligthly higher so it's not too close to the colour swapper.
                 if (i == 0)
@@ -134,8 +142,11 @@ public class GameController : MonoBehaviour
                 else
                     sliderPos.y += 3f;
 
-                // Instantiate new slider using prev position and add to parent container.
-                newSlider = Instantiate(slider, sliderPos, Quaternion.identity);
+                if (i == 1)
+                    newSlider = Instantiate(sliderLeft, sliderPos, Quaternion.identity);
+                else
+                    newSlider = Instantiate(sliderRight, sliderPos, Quaternion.identity);
+                
                 newSlider.transform.SetParent(parent.transform, false);
 
                 // == STAR SCORE == 
@@ -147,7 +158,7 @@ public class GameController : MonoBehaviour
                     sliderPos.y += 1.5f;
                     Instantiate(scoreStar, sliderPos, Quaternion.identity).transform.SetParent(parent.transform, false);
                 }
-
+            
                 // Set prevPosition to the current slider, for next slider or next level.
                 prevPosition = newSlider.transform;
             }
@@ -171,7 +182,7 @@ public class GameController : MonoBehaviour
 
             // == DIFFICULTY == 
             // Increase spinner speed for next level to increase difficulty slightly.
-            SpinnerRotator.RotationSpeed += 20f;
+            SpinnerRotator.RotationSpeed += 22f;
         }
     }
 

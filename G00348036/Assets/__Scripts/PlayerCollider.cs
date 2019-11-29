@@ -5,16 +5,14 @@ public class PlayerCollider : MonoBehaviour {
     #region == Private Variables == 
     [SerializeField]
     private SpriteRenderer sr;
-
-    private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
     
     private int scoreValue = 1;
+    public int ScoreValue { get { return scoreValue; } }
 
     #endregion
 
     #region == Public Variables == 
 
-    public int ScoreValue { get { return scoreValue; } }
 
     // notify the system when a star is collected.
     public delegate void StarCollected(PlayerCollider pc);

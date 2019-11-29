@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SliderMovement : MonoBehaviour {
+public class SliderMovementRight : MonoBehaviour {
 
     #region == Private Variables == 
 
@@ -10,6 +10,7 @@ public class SliderMovement : MonoBehaviour {
     private static float movementSpeed = 0.015f;
     public static float MovementSpeed
     {
+        get { return movementSpeed; }
         set { movementSpeed = value; }
     }
 
@@ -24,14 +25,6 @@ public class SliderMovement : MonoBehaviour {
         if (transform.position.x > outOfBounds)
         {
             transform.position = new Vector3(2.8f, transform.position.y, 0);
-            //transform.Translate(2.8f, transform.position.y, speed * Time.deltaTime);
-            //Debug.Log("Test");
-            //Vector2 newSliderPos = slider.transform.position;
-            //newSliderPos.x = -5.6f;
-
-            //Instantiate(slider, newSliderPos, Quaternion.identity);
-
-            //Destroy(slider);
         }
     }
 }

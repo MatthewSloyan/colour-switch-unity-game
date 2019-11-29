@@ -10,6 +10,7 @@ public class SpinnerRotator : MonoBehaviour {
     private static float rotationSpeed = 85f;
     public static float RotationSpeed
     {
+        get { return rotationSpeed; }
         set { rotationSpeed = value; }
     }
 

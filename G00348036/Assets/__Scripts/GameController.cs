@@ -199,8 +199,9 @@ public class GameController : MonoBehaviour
         // Set update the levelNumber by 1 for next level.
         PlayerPrefs.SetInt("LevelNumber", currLevelNum + 1);
 
-        // Add new gameobject and TextMeshPro
+        // Add new gameobject, DestroyGameObject script and TextMeshPro component.
         levelNumber = new GameObject("LevelNumber");
+        levelNumber.AddComponent<DestroyGameObjects>();
         levelNumber.AddComponent(typeof(TextMeshPro));
 
         // Get the component from the gameObject to set it's variables, E.g text, size and font style.
@@ -225,13 +226,7 @@ public class GameController : MonoBehaviour
     void OnApplicationQuit()
     {
         // Clean up
-        //Debug.Log("Application ending after " + Time.time + " seconds");
         PlayerPrefs.DeleteKey("LevelSwitch");
         PlayerPrefs.DeleteKey("LevelNumber");
     }
-
-    //void OnBecameInvisible()
-    //{
-    //    Destroy(gameObject);
-    //}
 }

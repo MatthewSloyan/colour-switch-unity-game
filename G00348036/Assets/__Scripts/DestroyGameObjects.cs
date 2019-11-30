@@ -12,17 +12,16 @@ public class DestroyGameObjects : MonoBehaviour {
     // https://forum.unity.com/threads/onbecameinvisible-not-working-on-my-object-whats-wrong-in-here.181009/
     void OnBecameInvisible()
     {
-        // Wait 1 second, as gameObjects are removed too quickly (E.g player can sometimes see them disappear).
+        // Wait 2 second, as gameObjects are removed too quickly (E.g player can sometimes see them disappear).
         StartCoroutine(Wait());
-
-        // After 1 second has elapsed destroy gameObject.
-        Destroy(gameObject);
     }
 
     // Code adapted from: https://docs.unity3d.com/ScriptReference/WaitForSeconds.html
     IEnumerator Wait()
     {
-        //yield on a new YieldInstruction that waits for 1 seconds.
-        yield return new WaitForSeconds(1);
+        //yield on a new YieldInstruction that waits for 2 seconds, then destroy gameObject.
+        yield return new WaitForSeconds(2);
+      
+        Destroy(gameObject);
     }
 }

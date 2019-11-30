@@ -229,4 +229,9 @@ public class GameController : MonoBehaviour
         PlayerPrefs.DeleteKey("LevelSwitch");
         PlayerPrefs.DeleteKey("LevelNumber");
     }
+
+    //void OnBecameInvisible()
+    //{
+    //    Destroy(gameObject);
+    //}
 }

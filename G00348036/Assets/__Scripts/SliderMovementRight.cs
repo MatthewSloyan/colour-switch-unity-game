@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class SliderMovementRight : MonoBehaviour {
 
-    #region == Private Variables == 
-
-    // Movement speed which will be updated slowly to increase difficulty
-    private static float movementSpeed = 0.015f;
-    public static float MovementSpeed
+    // Checks if slider is out of bounds, if so reset position and start moving right again.
+    void Update ()
     {
-        get { return movementSpeed; }
-        set { movementSpeed = value; }
-    }
+        // Take away distance from current position to move right.
+        transform.position += new Vector3(DifficultyController.MovementSpeed, 0, 0);
 
-    private float outOfBounds = 8.45f;
-    #endregion
-
-    // Update is called once per frame
-    void Update () {
-        Vector3 temp = new Vector3(movementSpeed, 0, 0);
-        transform.position += temp;
-
-        if (transform.position.x > outOfBounds)
+        // 8.45 = point where slider is out of bounds, and needs to be reset.
+        if (transform.position.x > 8.45f)
         {
             transform.position = new Vector3(2.8f, transform.position.y, 0);
         }

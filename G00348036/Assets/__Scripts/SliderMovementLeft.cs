@@ -3,27 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SliderMovementLeft : MonoBehaviour {
-
-    #region == Private Variables == 
-
-    // Movement speed which will be updated slowly to increase difficulty
-    private static float movementSpeed = 0.015f;
-    public static float MovementSpeed
-    {
-        get { return movementSpeed; }
-        set { movementSpeed = value; }
-    }
-
-    private float outOfBounds = 2.8f;
-    #endregion
-
-    // Update is called once per frame
+   
+    // Checks if slider is out of bounds, if so reset position and start moving left again.
     void Update()
     {
-        Vector3 temp = new Vector3(movementSpeed, 0, 0);
-        transform.position -= temp;
+        // Take away distance from current position ot move left.
+        transform.position -= new Vector3(DifficultyController.MovementSpeed, 0, 0);
 
-        if (transform.position.x < outOfBounds)
+        // 8.45 = point where slider is out of bounds, and needs to be reset.
+        if (transform.position.x < 2.8f)
         {
             transform.position = new Vector3(8.45f, transform.position.y, 0);
         }

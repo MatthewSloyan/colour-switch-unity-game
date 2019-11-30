@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
             // Play player death sound once.
             //AudioController.Instance.playPlayerDiesClip();
             
-            PauseMenu.Instance.GameOverDisplay();
+            MenuController.Instance.GameOverDisplay();
         }
     }
 }

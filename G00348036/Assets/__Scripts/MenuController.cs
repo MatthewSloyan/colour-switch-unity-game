@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour {
+public class MenuController : MonoBehaviour {
     
     #region == Private Variables == 
     private static bool isGamePaused = false;
@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour {
     #endregion
 
     // Singleton design pattern to get instance of class in PlayerCollider.cs
-    public static PauseMenu Instance { get; private set; }
+    public static MenuController Instance { get; private set; }
 
     private void Awake()
     {
@@ -137,6 +137,11 @@ public class PauseMenu : MonoBehaviour {
         // Clean up
         PlayerPrefs.DeleteKey("LevelSwitch");
         PlayerPrefs.DeleteKey("LevelNumber");
+
+        // Reset movement and rotation speed of spinners/sliders on reset.
+        DifficultyController dc = new DifficultyController();
+        dc.ResetMovementSpeed();
+        dc.ResetRotationSpeed();
 
         // Reload current scene.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

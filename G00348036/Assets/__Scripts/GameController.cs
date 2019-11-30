@@ -116,8 +116,7 @@ public class GameController : MonoBehaviour
 
             // == DIFFICULTY == 
             // Increase slider speed for next level to increase difficulty slightly.
-            SliderMovementRight.MovementSpeed += 0.007f;
-            SliderMovementLeft.MovementSpeed += 0.007f;
+            DifficultyController.MovementSpeed += 0.007f;
         }
         else
         {
@@ -181,8 +180,11 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("LevelSwitch", 0);
 
             // == DIFFICULTY == 
-            // Increase spinner speed for next level to increase difficulty slightly.
-            SpinnerRotator.RotationSpeed += 22f;
+            // Increase spinner speed for next level to increase difficulty slightly, depending if rotation is clockwise or anticlockwise.
+            if (DifficultyController.RotationSpeed < 0)
+                DifficultyController.RotationSpeed -= 25f;
+            else
+                DifficultyController.RotationSpeed += 25f;
         }
     }
 

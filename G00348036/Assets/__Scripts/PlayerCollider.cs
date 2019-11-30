@@ -70,7 +70,7 @@ public class PlayerCollider : MonoBehaviour {
             Time.timeScale = 0f;
 
             // Display the gameover menu from the Menu script
-            PauseMenu.Instance.GameOverDisplay();
+            MenuController.Instance.GameOverDisplay();
             return;
         }
     }

@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
 
             // == DIFFICULTY == 
             // Increase slider speed for next level to increase difficulty slightly.
-            DifficultyController.MovementSpeed += 0.007f;
+            DifficultyController.MovementSpeed += 0.008f;
         }
         else
         {
@@ -182,9 +182,9 @@ public class GameController : MonoBehaviour
             // == DIFFICULTY == 
             // Increase spinner speed for next level to increase difficulty slightly, depending if rotation is clockwise or anticlockwise.
             if (DifficultyController.RotationSpeed < 0)
-                DifficultyController.RotationSpeed -= 25f;
+                DifficultyController.RotationSpeed -= 23f;
             else
-                DifficultyController.RotationSpeed += 25f;
+                DifficultyController.RotationSpeed += 23f;
         }
     }
 

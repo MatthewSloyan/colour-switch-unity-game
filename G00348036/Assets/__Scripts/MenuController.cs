@@ -152,6 +152,9 @@ public class MenuController : MonoBehaviour {
     // Navigate the player back to the home menu
     public void GoToHomeMenu()
     {
+        // Reset movement and rotation speed of spinners/sliders on reset.
+        new DifficultyController().ResetRotationSpeed();
+
         SceneManager.LoadScene("HomeMenu", LoadSceneMode.Single);
         Time.timeScale = 1f;
         isGamePaused = false;

@@ -16,7 +16,10 @@ public class MenuController : MonoBehaviour {
 
     [SerializeField]
     private GameObject gameOverMenuUI;
-    
+
+    [SerializeField]
+    private GameObject tutorialMenuUI;
+
     [SerializeField]
     private Text currentScoreText;
 
@@ -121,6 +124,17 @@ public class MenuController : MonoBehaviour {
         }
     }
 
+    // Displays tutorial screen
+    public void DisplayTutorial()
+    {
+        tutorialMenuUI.SetActive(true);
+    }
+
+    // Displays tutorial screen
+    public void CloseTutorial()
+    {
+        tutorialMenuUI.SetActive(false);
+    }
 
     //Output the new state of the Toggle into Text
     void ToggleValueChanged(Toggle change)

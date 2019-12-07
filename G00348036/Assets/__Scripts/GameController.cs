@@ -210,15 +210,15 @@ public class GameController : MonoBehaviour
         // Code adapted from: https://forum.unity.com/threads/scripting-the-creation-of-text-meshes.6487/
         textMeshComponent = levelNumber.GetComponent(typeof(TextMeshPro)) as TextMeshPro;
         textMeshComponent.text = "Level " + currLevelNum;
-        textMeshComponent.fontSize = 5;
+        textMeshComponent.fontSize = 4;
         // Code adapted from: https://docs.unity3d.com/ScriptReference/TextMesh-fontStyle.html
         textMeshComponent.fontStyle = FontStyles.Bold;
 
         // Set the position to align to the left of the colour swapper.
         if (levelOption == 0)
-            textPos = new Vector2(7.6f, yPos + 0.55f);
+            textPos = new Vector2(7.8f, yPos + 0.5f);
         else
-            textPos = new Vector2(7.6f, yPos - 0.2f);
+            textPos = new Vector2(7.8f, yPos - 0.2f);
 
         // Instantiate new GameObject and add to parent container.
         Instantiate(levelNumber, textPos, Quaternion.identity).transform.SetParent(parent.transform, false);

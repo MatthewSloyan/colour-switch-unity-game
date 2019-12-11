@@ -43,6 +43,7 @@ public class AudioController : MonoBehaviour {
 
     void Update()
     {
+        // Check if game audio is off using player prefs, if so mute audiosource.
         if (PlayerPrefs.GetString("Sound") == "True")
         {
             source.mute = false;
@@ -53,22 +54,28 @@ public class AudioController : MonoBehaviour {
         }
     }
 
+    // Play background music on startup
     public void playBackgroundMusic()
     {
         source.clip = backgroundMusic;
         source.Play();
     }
 
+    // Plays death audio when game ends.
     public void playPlayerDiesClip()
     {
+        // Plays audio once over background music.
+        // https://docs.unity3d.com/ScriptReference/AudioSource.PlayOneShot.html
         source.PlayOneShot(playerDies);
     }
 
+    // Plays sound when star score is collected.
     public void playCollectStarClip()
     {
         source.PlayOneShot(collectStar);
     }
 
+    // Adds tap sound to all clicks
     public void playTapClip()
     {
         source.PlayOneShot(tapScreen);

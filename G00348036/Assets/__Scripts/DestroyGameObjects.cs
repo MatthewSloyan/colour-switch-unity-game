@@ -13,7 +13,12 @@ public class DestroyGameObjects : MonoBehaviour {
     void OnBecameInvisible()
     {
         // Wait 2 second, as gameObjects are removed too quickly (E.g player can sometimes see them disappear).
-        StartCoroutine(Wait());
+        try
+        {
+            if(gameObject.activeSelf)
+                StartCoroutine(Wait());
+        }
+        catch {}
     }
 
     // Code adapted from: https://docs.unity3d.com/ScriptReference/WaitForSeconds.html
@@ -21,7 +26,11 @@ public class DestroyGameObjects : MonoBehaviour {
     {
         //yield on a new YieldInstruction that waits for 2 seconds, then destroy gameObject.
         yield return new WaitForSeconds(2);
-      
-        Destroy(gameObject);
+
+        try
+        {
+            Destroy(gameObject);
+        }
+        catch{}
     }
 }

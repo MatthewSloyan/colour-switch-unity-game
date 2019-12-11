@@ -14,7 +14,6 @@ public class ScoreController : MonoBehaviour {
     public int PlayerScore { get { return playerScore; } }
     #endregion
 
-
     // Singleton design pattern to get instance of class in PlayerCollider.cs
     public static ScoreController Instance { get; private set; }
 
@@ -25,11 +24,6 @@ public class ScoreController : MonoBehaviour {
             Instance = this;
         }
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
 
     // subscribe to an star collected event and add the score
     private void OnEnable()
@@ -43,21 +37,19 @@ public class ScoreController : MonoBehaviour {
         // unsubscribe
         PlayerCollider.StarCollectedEvent -= HandleStarCollectedEvent;
     }
-
+    
+    // Add to score when event is fired.
     private void HandleStarCollectedEvent(PlayerCollider pc)
     {
         // add to the score
         playerScore += pc.ScoreValue;
-        Debug.Log("Score: " + playerScore);
 
         // Set the onscreen score.
         scoreText.text = playerScore.ToString();
         
-        // Check if score has been saved before.
+        // Check if score has been saved before, else initalize score
         if (PlayerPrefs.HasKey("Score"))
         {
-            //Debug.Log("HighScore: " + PlayerPrefs.GetInt("Score"));
-
             if (playerScore >= PlayerPrefs.GetInt("Score"))
             {
                 PlayerPrefs.SetInt("Score", playerScore);
@@ -67,7 +59,5 @@ public class ScoreController : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Score", 0);
         }
-        
-        //PlayerPrefs.DeleteAll();
     }
 }

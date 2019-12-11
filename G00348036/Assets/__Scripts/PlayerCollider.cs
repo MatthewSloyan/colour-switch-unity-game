@@ -13,7 +13,7 @@ public class PlayerCollider : MonoBehaviour {
 
     #region == Public Variables == 
 
-
+    // From the labs I implemented the score counter using events.
     // notify the system when a star is collected.
     public delegate void StarCollected(PlayerCollider pc);
 

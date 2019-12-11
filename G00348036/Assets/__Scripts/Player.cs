@@ -30,7 +30,7 @@ public class Player : MonoBehaviour {
         // Get space bar, up arrow and left mouse click input
         if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            // Play tap sound once.
+            // Play tap sound once, using AudioController instance.
             AudioController.Instance.playTapClip();
 
             // https://answers.unity.com/questions/1301204/how-to-change-rigidbody2d-body-type-or-change-whet.html
@@ -41,11 +41,9 @@ public class Player : MonoBehaviour {
             rb.velocity = Vector2.up * jumpSpeed;
         }
 
+        // Display game over if the player falls off screen.
         if (transform.position.y < fallThreshold)
         {
-            // Play player death sound once.
-            //AudioController.Instance.playPlayerDiesClip();
-            
             MenuController.Instance.GameOverDisplay();
         }
     }

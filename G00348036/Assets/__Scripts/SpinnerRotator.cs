@@ -11,6 +11,7 @@ public class SpinnerRotator : MonoBehaviour {
         int randomDirection = Random.Range(0, 2);
         if (randomDirection == 1)
         {
+            // Get roatation speed from DifficultyController script so as difficulty increases the spinners move faster.
             DifficultyController.RotationSpeed *= -1;
         }
     }

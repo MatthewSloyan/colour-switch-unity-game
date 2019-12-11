@@ -4,9 +4,11 @@ public class ColourManager : MonoBehaviour
 {
     #region == Private Variables == 
 
+    // Four colours used to change the current player colour.
     private Color[] colours = { new Color32(44, 182, 115, 255), new Color32(250, 238, 49, 255), new Color32(41, 141, 225, 255), new Color32(222, 82, 107, 255) };
 
-    private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" }; // Array of colour tags to set
+    // Array used to set the tag for the player to collide with obstacles.
+    private string[] colourOptions = new string[4] { "GreenTag", "YellowTag", "BlueTag", "RedTag" };
 
     [SerializeField]
     private SpriteRenderer sr;

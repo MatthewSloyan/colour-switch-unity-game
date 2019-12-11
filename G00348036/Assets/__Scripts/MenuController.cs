@@ -130,7 +130,7 @@ public class MenuController : MonoBehaviour {
         tutorialMenuUI.SetActive(true);
     }
 
-    // Displays tutorial screen
+    // Closes tutorial screen
     public void CloseTutorial()
     {
         tutorialMenuUI.SetActive(false);
@@ -157,7 +157,7 @@ public class MenuController : MonoBehaviour {
         dc.ResetMovementSpeed();
         dc.ResetRotationSpeed();
 
-        // Reload current scene.
+        // Reload current scene abd un pause game.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
         isGamePaused = false;

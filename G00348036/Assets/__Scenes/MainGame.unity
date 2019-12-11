@@ -906,8 +906,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.43736148}
   m_AnchorMax: {x: 1, y: 0.6248675}
-  m_AnchoredPosition: {x: -163.7, y: -95.2}
-  m_SizeDelta: {x: 745.01, y: 526.1}
+  m_AnchoredPosition: {x: -160.6, y: -95.2}
+  m_SizeDelta: {x: 1116, y: 526.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687665702
 MonoBehaviour:
@@ -1626,6 +1626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1065591892}
   gameOverMenuUI: {fileID: 583779576}
+  tutorialMenuUI: {fileID: 0}
   currentScoreText: {fileID: 496769516}
   highScoreText: {fileID: 413653653}
   soundToggle: {fileID: 813192340}
@@ -1662,7 +1663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -79.43, y: 260.1}
+  m_AnchoredPosition: {x: -79.43, y: 258.2}
   m_SizeDelta: {x: 98.74, y: 53.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349264898
@@ -1751,8 +1752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.43736148}
   m_AnchorMax: {x: 1, y: 0.6248675}
-  m_AnchoredPosition: {x: -163.7, y: 27.287}
-  m_SizeDelta: {x: 745, y: 500.2}
+  m_AnchoredPosition: {x: -160.6, y: 27.287003}
+  m_SizeDelta: {x: 1116, y: 500.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1379839066
 MonoBehaviour:

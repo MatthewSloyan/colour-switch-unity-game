@@ -15,7 +15,7 @@ public class DestroyGameObjects : MonoBehaviour {
         // Wait 2 second, as gameObjects are removed too quickly (E.g player can sometimes see them disappear).
         try
         {
-            if(gameObject.activeSelf)
+            if(gameObject.activeInHierarchy)
                 StartCoroutine(Wait());
         }
         catch {}
